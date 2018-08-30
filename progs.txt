@@ -1,0 +1,16 @@
+rofi
+ranger
+polybar
+thunar
+sublime text
+transmission
+wal
+vlc
+i3
+neofetch
+cava
+flameshot
+htop
+compton
+etcher
+lxapperance
