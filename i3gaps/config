@@ -1,8 +1,10 @@
 #mod1 == alt
 #pulseaudio -k makes pavucontrol recognise hdmi sound output
+#converts img for i3lock #convert -scale 2560x1440 source-image.jpg lockscreen.png
+
 
 bindsym Insert exec pkill -u sadx
-bindsym Pause exec i3lock -i /home/sadx/lock/locks1.png
+bindsym Pause exec i3lock -i ~/lock/locks1.png
 exec_always feh --bg-scale /home/sadx/Pictures/pics/cyberpunk_city_by_artursadlos-dbb7hcs.jpg
 exec_always bash /home/sadx/polybar/runPoly.sh
 exec_always compton
@@ -21,11 +23,13 @@ bindsym $mod+F1 exec google-chrome
 bindsym $mod+F2 exec thunar
 bindsym $mod+F3 exec subl
 bindsym $mod+F4 exec urxvt -e ranger
+bindsym $mod+F10 exec firefox https://open.spotify.com/collection/playlists
 bindsym Mod1+F4 kill
+# neofetch --w3m ~/Pictures/cyber_girl.jpg
 bindsym $mod+t exec urxvt
 #exec_always gaps inner all set 30;gaps outer all set 10;
 exec_always wal -i /home/sadx/Documents/bcppp/pics/cyberpunk_city_by_artursadlos-dbb7hcs.jpg
-#neofetch,cava,subl,cmatrix
+#neofetch,cava,subl,cmatrix,xprop
 
 gaps inner 10
 gaps outer 10
@@ -156,12 +160,13 @@ set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
-font-0 = fixed:pixelsize=8:weight=bold;0
-font-1 = unifont:fontformat=truetype:size=8:weight=bold:antialias=false;0
-font-2 = "Wuncon siji:pixelsize=8;1"
-font-3 = "Font Awesome 5 Free:style=Regular:pixelsize=8;1"
-font-4 = "Font Awesome 5 Free:style=Solid:pixelsize=8;1"
-font-5 = "Font Awesome 5 Brands:pixelsize=8;1"
+font-3 = FontAwesome5Free:style=Solid:pixelsize=10;3
+font-4 = FontAwesome5Brands:style=Solid:pixelsize=10;3
+font-0 = "Wuncon siji:pixelsize=8;1"
+font-1 = fixed:pixelsize=8:weight=bold;0
+font-2 = unifont:fontformat=truetype:size=8:weight=bold:antialias=false;0
+
+
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -191,6 +196,7 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 
 assign [class="Google-chrome"] $ws1
 assign [class="URxvt"] $ws2
+assign [class="Firefox"] $ws10
 #assign [class="Gedit"] $ws3
 exec google-chrome
 exec urxvt
