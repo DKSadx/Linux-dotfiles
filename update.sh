@@ -13,7 +13,7 @@ cp -r ~/.config/polybar ~/Documents/backup/dotfiles/
 cp -r ~/.config/rofi ~/Documents/backup/dotfiles/
 cp -r ~/.config/sublime-text-3/"Installed Packages" ~/Documents/backup/dotfiles/sublime-text-3
 cp -r ~/.config/sublime-text-3/"Packages" ~/Documents/backup/dotfiles/sublime-text-3
-cp -r ~/My_scripts ~/Documents/backup/dotfiles/
+rsync -av --progress ~/My_scripts ~/Documents/backup/dotfiles/ --exclude 'i3-gaps'
 cp ~/.config/compton.conf ~/Documents/backup/dotfiles/compton
 cp ~/.bashrc ~/Documents/backup/dotfiles/
 cp ~/.bash_profile ~/Documents/backup/dotfiles/
