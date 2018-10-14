@@ -13,6 +13,9 @@ bindsym Pause exec i3lock -i ~/lock/locks1.png
 exec_always bash /home/sadx/polybar/runPoly.sh
 #---- runs compton
 #exec_always compton
+#---- fixed screen tearing
+exec compton --backend glx --vsync opengl
+
 
 # Pulse Audio controls (multimedia buttons)
 bindsym XF86AudioRaiseVolume exec ~/My_scripts/v+.sh #increase sound volume
@@ -22,7 +25,7 @@ bindsym XF86AudioMute exec amixer sset Master toggle
 
 
 
-bindsym $mod+c exec gedit /home/sadx/.config/i3/config
+bindsym $mod+c exec subl /home/sadx/.config/i3/config
 bindsym $mod+shift+h exec /home/sadx/My_scripts/hdmi.sh
 bindsym Print exec flameshot gui -p /home/sadx/Pictures/screenshots
 bindsym $mod+Escape exec xfce4-appfinder

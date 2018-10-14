@@ -26,3 +26,5 @@ alias ccat="highlight --out-format=ansi" # Color cat - print file with syntax hi
 alias yta="youtube-dl --extract-audio --audio-format mp3 -o '~/Music/%(title)s.%(ext)s'"
 # Download youtube video file
 alias ytv="youtube-dl -o '~/Videos/%(title)s.%(ext)s'"
+# Custom neofetch
+alias neofetch="neofetch --w3m ~/Pictures/cyber_girl.jpg"
