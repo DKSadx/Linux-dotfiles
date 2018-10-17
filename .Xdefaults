@@ -64,3 +64,4 @@ rofi.bw:		0
 rofi.opacity:		"10"
 rofi.hide-scrollbar:	true
 rofi.width:		30
+URxvt*internalBorder: 10
