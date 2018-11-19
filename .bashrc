@@ -1,16 +1,28 @@
-# .bashrc
-# source ~/.bashrc   ---> refreshes bashrc so the changes apply
-# Source global definitions
-if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
+#
+# ~/.bashrc
+#
+if [[ "$(tty)" = "/dev/tt1" ]]; then
+	pgrep i3 || startx
 fi
 
-# Uncomment the following line if you don't like systemctl's auto-paging feature:
-# export SYSTEMD_PAGER=
 
-# User specific aliases and functions
-PS1='[\u@\h: \W\]]$ '
-alias c='clear'
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+alias ls='ls --color=auto'
+PS1='[\u@\h \W]\$ '
+
+# Import colorscheme from 'wal' asynchronously
+# &   # Run the process in the background.
+# ( ) # Hide shell job control messages.
+(cat ~/.cache/wal/sequences &)
+
+# Alternative (blocks terminal for 0-3ms)
+cat ~/.cache/wal/sequences
+
+# To add support for TTYs this line can be optionally added.
+source ~/.cache/wal/colors-tty.sh
+
 #Shows local IP address
 alias ipi='ipconfig getifaddr en0'
 #Shows external IP address
@@ -27,4 +39,10 @@ alias yta="youtube-dl --extract-audio --audio-format mp3 -o '~/Music/%(title)s.%
 # Download youtube video file
 alias ytv="youtube-dl -o '~/Videos/%(title)s.%(ext)s'"
 # Custom neofetch
-alias neofetch="neofetch --w3m ~/Pictures/cyber_girl.jpg"
+#alias neofetch="neofetch --w3m ~/Pictures/cyber_girl.jpg"
+alias c='clear'
+alias pac='sudo pacman -S'
+#launching python in tty
+alias py='python'
+# removes background colors on directorys
+LS_COLORS=$LS_COLORS:'ow=1;34:tw=1;34:' ; export LS_COLORS
