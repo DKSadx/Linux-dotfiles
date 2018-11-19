@@ -1,36 +1,40 @@
 #mod1 == alt
 #pulseaudio -k makes pavucontrol recognise hdmi sound output
 #converts img for i3lock #convert -scale 2560x1440 source-image.jpg lockscreen.png
-
+#---- shutdown
+bindsym $mod+shift+s exec shutdown now
 #---- log off
 bindsym $mod+Insert exec pkill -u sadx
-#---- i3lock background
-bindsym Pause exec i3lock -i ~/lock/locks1.png
+#---- i3lock background F12
+bindsym XF86RFKill exec i3lock -i ~/Pictures/wpLock.png
 #---- Desktop wallpaper
 #exec_always feh --bg-scale /home/sadx/Pictures/other/deer.jpg
-#exec_always feh --bg-scale /home/sadx/Pictures/pics/cyberpunk_city_by_artursadlos-dbb7hcs.jpg
 #---- runs polybar
-exec_always bash /home/sadx/polybar/runPoly.sh
+exec_always --no-startup-id ~/My_scripts/runPoly.sh
+#exec_always exec ~/My_scripts/runPoly.sh
 #---- runs compton
-#exec_always compton
 #---- fixed screen tearing
-exec compton --backend glx --vsync opengl
+#exec compton --backend glx --vsync opengl
+# change brightness
+# xrandr --output eDP-1 --brightness 0.9
+exec_always xrdb ~/.Xresources
 
 
 # Pulse Audio controls (multimedia buttons)
 bindsym XF86AudioRaiseVolume exec ~/My_scripts/v+.sh #increase sound volume
 bindsym XF86AudioLowerVolume exec ~/My_scripts/v-.sh #decrease sound volume
-bindsym XF86AudioMute exec amixer sset Master toggle
+bindsym XF86AudioMute exec ~/Desktop/soundMute.sh
 #bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
-
+# adds network manager to bar 
+exec_always nm-applet
 
 bindsym $mod+c exec subl /home/sadx/.config/i3/config
 bindsym $mod+shift+h exec /home/sadx/My_scripts/hdmi.sh
 bindsym Print exec flameshot gui -p /home/sadx/Pictures/screenshots
 bindsym $mod+Escape exec xfce4-appfinder
-bindsym $mod+F1 exec google-chrome
-bindsym shift+F1 exec google-chrome --args --incognito
+bindsym $mod+F1 exec google-chrome-stable
+bindsym shift+F1 exec google-chrome-stable --args --incognito
 bindsym $mod+F2 exec thunar
 bindsym $mod+F3 exec subl
 bindsym $mod+F4 exec urxvt -e ranger
@@ -40,9 +44,9 @@ bindsym Mod1+F4 kill
 bindsym $mod+t exec urxvt
 #exec_always gaps inner all set 30;gaps outer all set 10;
 #exec_always wal -i /home/sadx/Documents/bcppp/pics/cyberpunk_city_by_artursadlos-dbb7hcs.jpg
-exec_always wal -i /home/sadx/Pictures/other/deer.jpg
-#neofetch,cava,subl,cmatrix,xprop,xev(checks key),ksysguard
-
+exec_always wal -i ~/Pictures/wp1.jpg
+#neofetch,cava,subl,cmatrix,xprop(for classes),xev(checks key),ksysguard,nm-applet
+# add user to group gpasswd -a
 gaps inner 10
 gaps outer 10
 smart_gaps on
@@ -207,13 +211,13 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 
 #xprop finds class
 
-assign [class="Google-chrome"] $ws1
-assign [class="URxvt"] $ws2
-assign [class="Firefox"] $ws10
+#assign [class="Google-chrome"] $ws1
+#assign [class="URxvt"] $ws2
+#assign [class="Firefox"] $ws10
 #assign [class="Gedit"] $ws3
-exec google-chrome
-exec urxvt
-exec urxvt
+exec google-chrome-stable
+#exec urxvt
+#exec urxvt
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
