@@ -1,51 +1,149 @@
-#mod1 == alt
-#pulseaudio -k makes pavucontrol recognise hdmi sound output
-#converts img for i3lock #convert -scale 2560x1440 source-image.jpg lockscreen.png
+# i3wm(gaps) config
+# Sadx
+# Resets keyboard layout to default setxkbmap -layout 'us(intl)'
+
 #---- shutdown
 bindsym $mod+shift+s exec shutdown now
+
 #---- log off
 bindsym $mod+Insert exec pkill -u sadx
-#---- i3lock background F12
-bindsym XF86RFKill exec i3lock -i ~/Pictures/wpLock.png
+
+#---- i3lock background
+bindsym $mod+F11 exec i3lock -i ~/Pictures/wpLock.png
+
+#---- turn off screen untill keypress or mouse movement(F11)
+bindsym XF86AudioNext exec xset dpms force off
+
 #---- Desktop wallpaper
-#exec_always feh --bg-scale /home/sadx/Pictures/other/deer.jpg
-#---- runs polybar
-exec_always --no-startup-id ~/My_scripts/runPoly.sh
-#exec_always exec ~/My_scripts/runPoly.sh
+#exec feh --bg-scale /home/sadx/Pictures/other/deer.jpg
+
+
+#---- STARTUPS ----#
+
+#---- runs polybar(v2)
+exec_always --no-startup-id ~/My_scripts/runPoly2.sh
+
+#---- runs udiskie (automount)
+exec udiskie -s -f thunar
+
+#---- runs redshift(nightdim)
+#exec --no-startup-id redshift -l 45.932528:17.590347
+
+#---- clipboard daemon(greenclip) ; clear history "greenclip clear"
+exec --no-startup-id greenclip daemon
+
 #---- runs compton
+exec_always killall -e compton; exec compton
+
+#---- runs dunst
+exec_always killall -e dunst; exec duns
+
+# adds network manager to the tray
+exec_always killall -e nm-applet; exec nm-applet
+#exec_always nm-applet
+
+# pywal theme
+exec_always rm -r ~/.cache/wal ; wal -i ~/Pictures/wp1.jpg
+
 #---- fixed screen tearing
 #exec compton --backend glx --vsync opengl
+
 # change brightness
+bindsym XF86MonBrightnessDown exec ~/My_scripts/brightness.sh Down
+bindsym XF86MonBrightnessUp exec ~/My_scripts/brightness.sh Up
 # xrandr --output eDP-1 --brightness 0.9
+
+# launches Thunderbird in scratchpad ---------------------------
+#for_window [class="Thunderbird"] floating enable
+#for_window [class="Thunderbird"] move scratchpad
+#exec_always --no-startup-id thunderbird
+# ---------------------------------------------------------------
 exec_always xrdb ~/.Xresources
+
+#---- BINDINGS ----#
+
+# opens python in a floating window
+bindsym $mod+p exec urxvt -name python -e python3
+for_window [class="URxvt" instance="python"] floating enable
+
+# Google Search script for rofi
+bindsym $mod+s exec ~/My_scripts/polysearch.sh
+
+# sublime text and VScode shortcuts
+bindsym $mod+o exec urxvt -name sublime -e vim ~/Documents/backup/prog/more/subl.txt
+for_window [class="URxvt" instance="sublime"] floating enable
+
+# vim shortcuts
+bindsym $mod+shift+o exec urxvt -name vim -e vim ~/Documents/backup/prog/more/vim.txt
+for_window [class="URxvt" instance="vim"] floating enable
+
+# opens urxvt in a floating window
+bindsym $mod+shift+t exec urxvt -name tty
+for_window [class="URxvt" instance="tty"] floating enable
 
 
 # Pulse Audio controls (multimedia buttons)
-bindsym XF86AudioRaiseVolume exec ~/My_scripts/v+.sh #increase sound volume
-bindsym XF86AudioLowerVolume exec ~/My_scripts/v-.sh #decrease sound volume
-bindsym XF86AudioMute exec ~/Desktop/soundMute.sh
+bindsym XF86AudioRaiseVolume exec ~/My_scripts/v+.sh # increase sound volume script
+bindsym XF86AudioLowerVolume exec ~/My_scripts/v-.sh # decrease sound volume script
+bindsym XF86AudioMute exec ~/My_scripts/soundMute.sh # mute sound script
 #bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
-# adds network manager to bar 
-exec_always nm-applet
+# Enable/disable touchpad(F10)
+bindsym XF86AudioPlay exec ~/My_scripts/touchpad_toggle.sh
+#--------------------------------------------------------------------------------------
+# "minimizes program"
+bindsym $mod+shift+grave move scratchpad
+bindsym $mod+grave scratchpad show
 
-bindsym $mod+c exec subl /home/sadx/.config/i3/config
+# opens i3 config
+bindsym $mod+shift+c exec gedit /home/sadx/.config/i3/config
+# hdmi script
 bindsym $mod+shift+h exec /home/sadx/My_scripts/hdmi.sh
+# screenshot tool
 bindsym Print exec flameshot gui -p /home/sadx/Pictures/screenshots
+# app gui manager
 bindsym $mod+Escape exec xfce4-appfinder
 bindsym $mod+F1 exec google-chrome-stable
 bindsym shift+F1 exec google-chrome-stable --args --incognito
+bindsym $mod+shift+F1 exec env GTK_THEME=Clearlooks firefox --private
 bindsym $mod+F2 exec thunar
-bindsym $mod+F3 exec subl
+bindsym $mod+F3 exec code
+bindsym $mod+shift+F3 exec subl
 bindsym $mod+F4 exec urxvt -e ranger
+bindsym $mod+F5 exec runelite --mode=OFF
+bindsym $mod+shift+F5 exec sg no-internet -c minecraft-launcher
+bindsym $mod+F6 exec thunderbird
+	for_window [window_role="Msgcompose" class="(?i)Thunderbird"] floating enable
+# restart dunst
+bindsym $mod+F7 exec killall -e dunst; exec dunst
+
+# clears greenclip history(clipboard)
+bindsym $mod+Delete exec ~/My_scripts/greenclip.sh
+
+# opens spotify in firefox
 bindsym $mod+F10 exec firefox https://open.spotify.com/collection/playlists
-bindsym Mod1+F4 kill
-# neofetch --w3m ~/Pictures/cyber_girl.jpg
+
+# neofetch --w3m ~/Pictures/img.jpg (custom neofetch image)
+
+# opens urxvt
 bindsym $mod+t exec urxvt
+
 #exec_always gaps inner all set 30;gaps outer all set 10;
-#exec_always wal -i /home/sadx/Documents/bcppp/pics/cyberpunk_city_by_artursadlos-dbb7hcs.jpg
-exec_always wal -i ~/Pictures/wp1.jpg
-#neofetch,cava,subl,cmatrix,xprop(for classes),xev(checks key),ksysguard,nm-applet
+
+# change notification sound volume script
+bindsym $mod+n exec ~/My_scripts/changeNotifSound.sh
+
+# move to next window
+bindsym $mod+shift+Tab workspace next
+
+# move to next workspace
+bindsym $mod+Tab focus left
+
+#------------------------------------------------------------------------------------------
+
+
+
+
 # add user to group gpasswd -a
 gaps inner 10
 gaps outer 10
@@ -84,7 +182,6 @@ set $mod Mod4
 # is used in the bar {} block below.
 #font pango:System San Francisco Display 9
 font pango:DejaVu Sans Mono 10
-
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
@@ -104,8 +201,13 @@ floating_modifier $mod
 bindsym $mod+Return exec urxvt
 # kill focused window
 bindsym $mod+q kill
+
+# rofi clipboard(greenclip)
+bindsym $mod+c exec rofi -theme material -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
+
 # start dmenu (a program launcher)
-bindsym $mod+d exec rofi -show drun -theme Arc-Dark
+#bindsym $mod+d exec rofi -show drun -theme material -show-icons
+bindsym $mod+d exec rofi -show drun -theme Arc-Dark -show-icons
 bindsym $mod+shift+d exec rofi -show window -theme Arc-Dark
 #bindsym $mod+d exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
@@ -114,10 +216,10 @@ bindsym $mod+shift+d exec rofi -show window -theme Arc-Dark
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -138,7 +240,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+# bindsym $mod+h split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -147,7 +249,7 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
+# bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
@@ -167,7 +269,7 @@ bindsym $mod+a focus parent
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 #
-set $ws1 "1" 
+set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
 set $ws4 "4"
@@ -214,17 +316,20 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 #assign [class="Google-chrome"] $ws1
 #assign [class="URxvt"] $ws2
 #assign [class="Firefox"] $ws10
-#assign [class="Gedit"] $ws3
 exec google-chrome-stable
+assign [class="Pavucontrol"] $ws7
+exec pavucontrol
+
 #exec urxvt
 #exec urxvt
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+# bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3?
+#This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -267,3 +372,15 @@ bindsym $mod+r mode "resize"
 	#}
 #}
 
+#---------------------------NOTES----------------------------------#
+
+#mod1 == alt
+#pulseaudio -k
+#converts img for i3lock #convert -scale 2560x1440 source-image.jpg lockscreen.png
+#--- Programs
+#neofetch,cava(audio visualizer),cmatrix,pywal(colors),xprop(for classes),xev(checks key)
+#ksysguard,nm-applet(network manager applet),file-roller(gui tar)
+#dunst(notification deamon),keepassx(pw manager),redshift(nightlight),udiskie,
+#firejail(sandbox),Gufw/ufw(firewall setup), trash-cli(trash commands cli), gvfs(trash can),
+#pkgbrowser(clear cache gui),lsof(open ports, "sudo lsof -i"), glances(better htop), python-qrcode(qr code generator)
+#Gource(visualizing git repo)
