@@ -1,13 +1,13 @@
 ! "Enabled modi" Set from: Default
 ! rofi.modi:                           window,run,ssh
-! "Window width" Set from: Default
-! rofi.width:                          50
-! "Number of lines" Set from: Default
-! rofi.lines:                          15
+! "Window width" Set from: Rasi File
+rofi.width:                          50
+! "Number of lines" Set from: Rasi File
+rofi.lines:                          15
 ! "Number of columns" Set from: Default
 ! rofi.columns:                        1
-! "Font to use" Set from: Default
-! rofi.font:                           mono 12
+! "Font to use" Set from: Rasi File
+rofi.font:                           roboto 15
 ! "Border width" Set from: Default
 ! rofi.bw:                             1
 ! "Location on screen" Set from: Default
@@ -26,8 +26,8 @@
 ! rofi.terminal:                       rofi-sensible-terminal
 ! "Ssh client to use" Set from: Default
 ! rofi.ssh-client:                     ssh
-! "Ssh command to execute" Set from: Default
-! rofi.ssh-command:                    {terminal} -e {ssh-client} {host} [-p {port}]
+! "Ssh command to execute" Set from: XResources
+rofi.ssh-command:                     {terminal} -e {ssh-client} {host}
 ! "Run command to execute" Set from: Default
 ! rofi.run-command:                    {cmd}
 ! "Command to get extra run targets" Set from: Default
@@ -164,32 +164,32 @@
 ! rofi.kb-remove-word-forward:         Control+Alt+d
 ! "Delete next char" Set from: Default
 ! rofi.kb-remove-char-forward:         Delete,Control+d
-! "Delete previous char" Set from: Default
-! rofi.kb-remove-char-back:            BackSpace,Shift+BackSpace,Control+h
-! "Delete till the end of line" Set from: Default
-! rofi.kb-remove-to-eol:               Control+k
+! "Delete previous char" Set from: XResources
+rofi.kb-remove-char-back:            BackSpace
+! "Delete till the end of line" Set from: XResources
+rofi.kb-remove-to-eol:               Control+Shift+e
 ! "Delete till the start of line" Set from: Default
 ! rofi.kb-remove-to-sol:               Control+u
-! "Accept entry" Set from: Default
-! rofi.kb-accept-entry:                Control+j,Control+m,Return,KP_Enter
+! "Accept entry" Set from: XResources
+rofi.kb-accept-entry:                Control+m,Return,KP_Enter
 ! "Use entered text as command (in ssh/run modi)" Set from: Default
 ! rofi.kb-accept-custom:               Control+Return
 ! "Use alternate accept command." Set from: Default
 ! rofi.kb-accept-alt:                  Shift+Return
 ! "Delete entry from history" Set from: Default
 ! rofi.kb-delete-entry:                Shift+Delete
-! "Switch to the next mode." Set from: Default
-! rofi.kb-mode-next:                   Shift+Right,Control+Tab
-! "Switch to the previous mode." Set from: Default
-! rofi.kb-mode-previous:               Shift+Left,Control+ISO_Left_Tab
+! "Switch to the next mode." Set from: XResources
+rofi.kb-mode-next:                   Shift+Right,Control+Tab,Control+l
+! "Switch to the previous mode." Set from: XResources
+rofi.kb-mode-previous:               Shift+Left,Control+Shift+Tab,Control+h
 ! "Go to the previous column" Set from: Default
 ! rofi.kb-row-left:                    Control+Page_Up
 ! "Go to the next column" Set from: Default
 ! rofi.kb-row-right:                   Control+Page_Down
-! "Select previous entry" Set from: Default
-! rofi.kb-row-up:                      Up,Control+p,ISO_Left_Tab
-! "Select next entry" Set from: Default
-! rofi.kb-row-down:                    Down,Control+n
+! "Select previous entry" Set from: XResources
+rofi.kb-row-up:                      Up,Control+k,Shift+Tab,Shift+ISO_Left_Tab
+! "Select next entry" Set from: XResources
+rofi.kb-row-down:                    Down,Control+j
 ! "Go to next row, if one left, accept it, if no left next mode." Set from: Default
 ! rofi.kb-row-tab:                     Tab
 ! "Go to the previous page" Set from: Default

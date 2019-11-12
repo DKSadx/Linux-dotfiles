@@ -7,6 +7,9 @@ Plug 'https://github.com/tpope/vim-surround.git'
 Plug 'https://github.com/scrooloose/nerdtree.git'
 Plug 'https://github.com/jiangmiao/auto-pairs.git'
 Plug 'https://github.com/scrooloose/nerdcommenter.git'
+Plug 'https://github.com/mxw/vim-jsx.git'
+Plug 'https://github.com/pangloss/vim-javascript.git'
+" Plug 'https://github.com/chrisbra/Colorizer.git'
 Plug 'Rigellute/rigel'
 Plug 'Valloric/YouCompleteMe'
 Plug 'terryma/vim-multiple-cursors'
@@ -59,6 +62,10 @@ nnoremap q :q<CR>
 
 " Maps Q to force exit file
 nnoremap Q :q!<CR>
+
+" Maps redo to U
+nnoremap U :redo<CR>
+
 
 " Opens nerdtree file explorer
 map <C-o> :NERDTreeToggle<CR>

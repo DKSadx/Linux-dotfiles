@@ -1,5 +1,5 @@
-configuration {
 /*	modi: "window,run,ssh";*/
+configuration {
 width: 50;
 lines: 15;
 /*	columns: 1;*/
@@ -47,13 +47,13 @@ lines: 15;
 /*	fake-transparency: false;*/
 /*	dpi: -1;*/
 /*	threads: 0;*/
-/*	scrollbar-width: 8;*/
 /*	scroll-method: 0;*/
+/*	scrollbar-width: 8;*/
 /*	fake-background: "screenshot";*/
 /*	window-format: "{w}    {c}   {t}";*/
 /*	click-to-exit: true;*/
 /*	show-match: true;*/
-/*	theme: ;*/
+/*	theme: Nebula;*/
 /*	color-normal: ;*/
 /*	color-urgent: ;*/
 /*	color-active: ;*/
@@ -142,4 +142,5 @@ lines: 15;
 /*	me-select-entry: "MousePrimary";*/
 /*	me-accept-entry: "MouseDPrimary";*/
 /*	me-accept-custom: "Control+MouseDPrimary";*/
+/* vim:ft=css */
 }

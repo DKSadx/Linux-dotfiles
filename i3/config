@@ -40,7 +40,7 @@ exec_always killall -e dunst; exec duns
 
 # adds network manager to the tray
 exec_always killall -e nm-applet; exec nm-applet
-#exec_always nm-applet
+exec_always nm-applet
 
 # pywal theme
 exec_always rm -r ~/.cache/wal ; wal -i ~/Pictures/wp1.jpg
@@ -100,7 +100,8 @@ bindsym $mod+shift+c exec gedit /home/sadx/.config/i3/config
 # hdmi script
 bindsym $mod+shift+h exec /home/sadx/My_scripts/hdmi.sh
 # screenshot tool
-bindsym Print exec flameshot gui -p /home/sadx/Pictures/screenshots
+bindsym Print exec flameshot gui 
+bindsym shift+Print exec flameshot gui -p /home/sadx/Pictures/screenshots
 # app gui manager
 bindsym $mod+Escape exec xfce4-appfinder
 bindsym $mod+F1 exec google-chrome-stable
@@ -138,6 +139,8 @@ bindsym $mod+shift+Tab workspace next
 
 # move to next workspace
 bindsym $mod+Tab focus left
+
+for_window [title="ssh" class="URxvt"] floating enable
 
 #------------------------------------------------------------------------------------------
 
@@ -203,13 +206,12 @@ bindsym $mod+Return exec urxvt
 bindsym $mod+q kill
 
 # rofi clipboard(greenclip)
-bindsym $mod+c exec rofi -theme material -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
+bindsym $mod+c exec rofi -theme Nebula -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
 
-# start dmenu (a program launcher)
-#bindsym $mod+d exec rofi -show drun -theme material -show-icons
-bindsym $mod+d exec rofi -show drun -theme Arc-Dark -show-icons
-bindsym $mod+shift+d exec rofi -show window -theme Arc-Dark
-#bindsym $mod+d exec dmenu_run
+# start rofi (a program launcher)
+bindsym $mod+d exec rofi -show drun -theme Nebula -show-icons 
+bindsym $mod+shift+d exec rofi -show window -theme Nebula -show-icons
+
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.

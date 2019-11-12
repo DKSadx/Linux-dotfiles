@@ -1,5 +1,4 @@
-# Remove package and its dependenties
-# pacman -Rcn
+
 # ---------------------------------------------- #
 # --------------- Aliases ---------------------- #
 # ---------------------------------------------- #
@@ -19,6 +18,8 @@ manToPdf() {
 alias clearCache='paccache -rk1'
 # Start vim in insert mode
 alias vim='vim -c "startinsert"'
+# Remove package and its dependenties
+# pacman -Rcn
 # Moves file into trash-bin instead deleting it
 alias rm=trash-put
 # Shows man in pdf
