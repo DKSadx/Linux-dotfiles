@@ -118,6 +118,9 @@ bindsym $mod+F6 exec thunderbird
 # restart dunst
 bindsym $mod+F7 exec killall -e dunst; exec dunst
 
+# changes keyboard language(ba <-> us)
+bindsym $mod+F9 exec ~/My_scripts/keyboardLang.sh
+
 # clears greenclip history(clipboard)
 bindsym $mod+Delete exec ~/My_scripts/greenclip.sh
 
