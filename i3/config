@@ -100,8 +100,9 @@ bindsym $mod+shift+c exec gedit /home/sadx/.config/i3/config
 # hdmi script
 bindsym $mod+shift+h exec /home/sadx/My_scripts/hdmi.sh
 # screenshot tool
-bindsym Print exec flameshot gui 
-bindsym shift+Print exec flameshot gui -p /home/sadx/Pictures/screenshots
+bindsym Print exec flameshot gui
+bindsym $mod+Shift+Escape exec flameshot full -c
+bindsym shift+Print exec flameshot gui -p ~/Pictures/screenshots
 # app gui manager
 bindsym $mod+Escape exec xfce4-appfinder
 bindsym $mod+F1 exec google-chrome-stable
