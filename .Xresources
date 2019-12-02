@@ -1,0 +1,28 @@
+// URxvt.font: xft:inconsolata:size=15
+URxvt.font: xft:inconsolata:size=15,xft:Inconsolata Nerd Font Mono:size=18 
+// URxvt.letterSpace: -1 
+URxvt.scrollBar: false
+Xcursor.theme: Breeze-Adapta
+Xcursor.size: 16
+
+URxvt.perl-ext-common: font-size
+
+// Unbinds Ctrl+s urxvt 
+URxvt.keysym.C-s: command:\000
+// Shift+K/J for scrolling 5 lines up/down
+URxvt.keysym.Shift-K: command:\033]720;5\007
+URxvt.keysym.Shift-J: command:\033]721;5\007
+
+// Rofi vim keybindings (ctrl + hjkl)
+rofi.kb-row-up:                      Up,Control+k,Shift+Tab,Shift+ISO_Left_Tab
+rofi.kb-row-down:                    Down,Control+j
+rofi.kb-accept-entry:                Control+m,Return,KP_Enter
+rofi.kb-remove-to-eol:               Control+Shift+e
+rofi.kb-mode-next:                   Shift+Right,Control+Tab,Control+l
+rofi.kb-mode-previous:               Shift+Left,Control+Shift+Tab,Control+h
+rofi.kb-remove-char-back:            BackSpace
+rofi.ssh-command:                    {terminal} -name ssh -e {ssh-client} SX@{host}
+
+
+
+// xrdb ~/.Xresources 		=== apply changes made in .Xresources

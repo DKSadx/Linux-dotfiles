@@ -12,4 +12,5 @@ cp ~/.vimrc ~/Documents/backup/Linux-dotfiles/vim/
 cp ~/.tmux.conf ~/Documents/backup/Linux-dotfiles/tmux/
 cp ~/.xinitrc ~/Documents/backup/Linux-dotfiles/
 cp ~/.Xmodmap ~/Documents/backup/Linux-dotfiles/
+cp ~/.Xresources ~/Documents/backup/Linux-dotfiles/
 cp ~/My_scripts/*.sh ~/Documents/backup/Linux-dotfiles/My_scripts/
