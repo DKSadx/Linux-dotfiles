@@ -72,5 +72,8 @@ alias ports='lsof -i'
 alias gccc='gcc -g -Wall -o'
 # Update and upgrade
 alias update='pacman -Syu'
+# Start named tmux session
+alias tmuxn='tmux new -s'
+
 # Removes background colors on directories
 LS_COLORS=$LS_COLORS:'ow=1;34:tw=1;34:' ; export LS_COLORS

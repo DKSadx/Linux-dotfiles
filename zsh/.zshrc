@@ -53,6 +53,8 @@ alias ports='lsof -i'
 alias gccc='gcc -g -Wall -o'
 # Update and upgrade
 alias update='pacman -Syu'
+# Start named tmux session
+alias tmuxn='tmux new -s'
 
 # ---------------------------------------------- #
 # --------------- Oh-my-zsh stuff -------------- #
