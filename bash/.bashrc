@@ -5,6 +5,8 @@ if [[ "$(tty)" = "/dev/tt1" ]]; then
 	pgrep i3 || startx
 fi
 
+# Vi mode
+set -o vi
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
