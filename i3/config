@@ -96,7 +96,7 @@ bindsym $mod+shift+grave move scratchpad
 bindsym $mod+grave scratchpad show
 
 # opens i3 config
-bindsym $mod+shift+c exec gedit /home/sadx/.config/i3/config
+bindsym $mod+shift+c exec urxvt -e vim /home/sadx/.config/i3/config
 # hdmi script
 bindsym $mod+shift+h exec /home/sadx/My_scripts/hdmi.sh
 # screenshot tool
@@ -144,7 +144,7 @@ bindsym $mod+shift+Tab workspace next
 # move to next workspace
 bindsym $mod+Tab focus left
 
-for_window [title="ssh" class="URxvt"] floating enable
+for_window [title="sshFloat" class="URxvt"] floating enable
 
 #------------------------------------------------------------------------------------------
 
@@ -213,7 +213,7 @@ bindsym $mod+q kill
 bindsym $mod+c exec rofi -theme Nebula -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
 
 # start rofi (a program launcher)
-bindsym $mod+d exec rofi -show drun -theme Nebula -show-icons 
+bindsym $mod+d exec rofi -show drun -theme Nebula -show-icons
 bindsym $mod+shift+d exec rofi -show window -theme Nebula -show-icons
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
