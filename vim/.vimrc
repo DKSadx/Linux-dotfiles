@@ -66,6 +66,8 @@ nnoremap Q :q!<CR>
 " Maps redo to U
 nnoremap U :redo<CR>
 
+" Yank to system clipboard(requires gvim on Arch linux)
+map Y "+y
 
 " Opens nerdtree file explorer
 map <C-o> :NERDTreeToggle<CR>
