@@ -9,6 +9,7 @@ Plug 'https://github.com/jiangmiao/auto-pairs.git'
 Plug 'https://github.com/scrooloose/nerdcommenter.git'
 Plug 'https://github.com/mxw/vim-jsx.git'
 Plug 'https://github.com/pangloss/vim-javascript.git'
+Plug 'https://github.com/airblade/vim-gitgutter'
 " Plug 'https://github.com/chrisbra/Colorizer.git'
 Plug 'Rigellute/rigel'
 Plug 'Valloric/YouCompleteMe'
@@ -25,6 +26,9 @@ set timeoutlen=150 ttimeoutlen=0
 
 " Displays line numbers
 set relativenumber
+
+" Git checks file every 100ms(default 4000ms)
+set updatetime=100
 
 " --------------- Colors ------------------ "
 " Colorscheme
