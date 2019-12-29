@@ -18,8 +18,6 @@ manToPdf() {
 alias clearCache='paccache -rk1'
 # Start vim in insert mode
 alias vim='vim -c "startinsert"'
-# Remove package and its dependenties
-# pacman -Rcn
 # Moves file into trash-bin instead deleting it
 alias rm=trash-put
 # Shows man in pdf
@@ -41,10 +39,9 @@ alias yta=ytAudio
 # Download youtube video file
 alias ytv=ytVideo
 #alias ytv="youtube-dl -o '~/Videos/%(title)s.%(ext)s'"
-# Custom neofetch
-# alias neofetch="neofetch --w3m ~/Pictures/cyber_girl.jpg"
 alias c='clear'
 alias pac='sudo pacman -S'
+alias pacR='sudo pacman -Rns'
 # Launching python in tty
 alias py='python'
 # List all open ports

@@ -32,8 +32,8 @@ exec udiskie -s -f thunar
 #---- clipboard daemon(greenclip) ; clear history "greenclip clear"
 exec --no-startup-id greenclip daemon
 
-#---- runs compton
-exec_always killall -e compton; exec compton
+#---- runs picom
+exec_always killall -e picom; exec picom
 
 #---- runs dunst
 exec_always killall -e dunst; exec duns
@@ -44,9 +44,6 @@ exec_always nm-applet
 
 # pywal theme
 exec_always rm -r ~/.cache/wal ; wal -i ~/Pictures/wp1.jpg
-
-#---- fixed screen tearing
-#exec compton --backend glx --vsync opengl
 
 # change brightness
 bindsym XF86MonBrightnessDown exec ~/My_scripts/brightness.sh Down

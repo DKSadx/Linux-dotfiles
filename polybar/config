@@ -40,6 +40,7 @@ alert = #bd2c40
 
 [bar/example]
 ;monitor = ${env:MONITOR:HDMI-1}
+monitor = ${env:MONITOR:}
 width = 100%
 height = 22
 ;offset-x = 1%
@@ -108,11 +109,6 @@ cursor-click = pointer
 cursor-scroll = ns-resize
 
 ; Custom modules
-
-; Enables polybar on multiple monitors, requires script
-; Source: https://github.com/polybar/polybar/issues/763
-[bar/example]
-monitor = ${env:MONITOR:}
 
 [module/my_wifi]
 format-prefix = " "
