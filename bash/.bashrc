@@ -76,6 +76,9 @@ alias gccc='gcc -g -Wall -o'
 alias update='pacman -Syu'
 # Start named tmux session
 alias tmuxn='tmux new -s'
+# Shellcheck
+alias sc='shellcheck'
+
 
 # Removes background colors on directories
 LS_COLORS=$LS_COLORS:'ow=1;34:tw=1;34:' ; export LS_COLORS

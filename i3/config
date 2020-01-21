@@ -33,7 +33,7 @@ exec udiskie -s -f thunar
 exec --no-startup-id greenclip daemon
 
 #---- runs picom
-exec_always killall -e picom; exec picom
+#exec_always killall -e picom; exec picom
 
 #---- runs dunst
 exec_always killall -e dunst; exec duns
@@ -102,8 +102,10 @@ bindsym $mod+Shift+Escape exec flameshot full -c
 bindsym shift+Print exec flameshot gui -p ~/Pictures/screenshots
 # app gui manager
 bindsym $mod+Escape exec xfce4-appfinder
-bindsym $mod+F1 exec google-chrome-stable
-bindsym shift+F1 exec google-chrome-stable --args --incognito
+# bindsym $mod+F1 exec google-chrome-stable
+bindsym $mod+F1 exec firefox
+bindsym shift+F1 exec google-chrome-stable
+# bindsym shift+F1 exec google-chrome-stable --args --incognito
 bindsym $mod+shift+F1 exec env GTK_THEME=Clearlooks firefox --private
 bindsym $mod+F2 exec thunar
 bindsym $mod+F3 exec code
@@ -243,7 +245,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-# bindsym $mod+h split h
+bindsym $mod+shift+v split h
 
 # split in vertical orientation
 bindsym $mod+v split v

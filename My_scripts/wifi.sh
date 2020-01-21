@@ -5,4 +5,4 @@ if [ "$wifi" == "" ]; then
 	echo "Not connected"
 else
 	echo "$wifi"
- fi
+fi

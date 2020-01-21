@@ -52,6 +52,8 @@ alias gccc='gcc -g -Wall -o'
 alias update='pacman -Syu'
 # Start named tmux session
 alias tmuxn='tmux new -s'
+# Shellcheck
+alias sc='shellcheck'
 
 # ---------------------------------------------- #
 # --------------- Oh-my-zsh stuff -------------- #
