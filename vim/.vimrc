@@ -10,6 +10,7 @@ Plug 'https://github.com/scrooloose/nerdcommenter.git'
 Plug 'https://github.com/mxw/vim-jsx.git'
 Plug 'https://github.com/pangloss/vim-javascript.git'
 Plug 'https://github.com/airblade/vim-gitgutter'
+Plug 'https://github.com/ap/vim-buftabline.git'
 " Plug 'https://github.com/chrisbra/Colorizer.git'
 Plug 'Rigellute/rigel'
 Plug 'Valloric/YouCompleteMe'
@@ -102,3 +103,8 @@ inoremap <A-j> <Esc>:m .+1<CR>==gi
 inoremap <A-k> <Esc>:m .-2<CR>==gi
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
+
+" Buffer bindings (ctrl+l/h)
+set hidden
+nnoremap <C-l> :bnext<CR>
+nnoremap <C-h> :bprev<CR>
