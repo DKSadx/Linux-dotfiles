@@ -9,7 +9,7 @@ Plug 'https://github.com/jiangmiao/auto-pairs.git'
 Plug 'https://github.com/scrooloose/nerdcommenter.git'
 Plug 'https://github.com/mxw/vim-jsx.git'
 Plug 'https://github.com/pangloss/vim-javascript.git'
-Plug 'https://github.com/airblade/vim-gitgutter'
+"Plug 'https://github.com/airblade/vim-gitgutter'
 Plug 'https://github.com/ap/vim-buftabline.git'
 Plug 'https://github.com/ekalinin/Dockerfile.vim.git'
 Plug 'https://github.com/tpope/vim-fugitive.git'
@@ -79,6 +79,9 @@ map Y "+y
 " Opens nerdtree file explorer
 map <C-o> :NERDTreeToggle<CR>
 
+" Git diff
+map <C-g> :Gdiff<CR>
+
 " Multiple cursors
 let g:multi_cursor_start_word_key = '<C-n>'
 
@@ -106,7 +109,7 @@ inoremap <A-k> <Esc>:m .-2<CR>==gi
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 
-" Buffer bindings (ctrl+l/h)
+" Buffer bindings (ctrl+j/k)
 set hidden
-nnoremap <C-l> :bnext<CR>
-nnoremap <C-h> :bprev<CR>
+nnoremap <C-j> :bnext<CR>
+nnoremap <C-k> :bprev<CR>

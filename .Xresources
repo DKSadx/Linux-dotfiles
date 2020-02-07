@@ -9,9 +9,6 @@ URxvt.perl-ext-common: font-size
 
 // Unbinds Ctrl+s urxvt 
 URxvt.keysym.C-s: command:\000
-// Shift+K/J for scrolling 5 lines up/down
-URxvt.keysym.Shift-K: command:\033]720;5\007
-URxvt.keysym.Shift-J: command:\033]721;5\007
 
 // Rofi vim keybindings (ctrl + hjkl)
 rofi.kb-row-up:                      Up,Control+k,Shift+Tab,Shift+ISO_Left_Tab
