@@ -1,4 +1,3 @@
-
 # ---------------------------------------------- #
 # --------------- Aliases ---------------------- #
 # ---------------------------------------------- #
@@ -54,6 +53,20 @@ alias update='pacman -Syu'
 alias tmuxn='tmux new -s'
 # Shellcheck
 alias sc='shellcheck'
+# External ip
+alias eip='curl ifconfig.me'
+#--- Kubernetes ---
+# K9s
+alias k='k9s'
+# Kubectl
+alias kc='kubectl'
+# Descibe
+alias kcd='kubectl descibe'
+# Get
+alias kcg='kubectl get'
+# Minikube
+alias mk='minikube'
+alias cdA='cd ~/Desktop/ABH-tasks/demo-app'
 
 # ---------------------------------------------- #
 # --------------- Oh-my-zsh stuff -------------- #
@@ -151,5 +164,5 @@ bindkey '^R' history-incremental-search-backward
 # ---------------------------------------------- #
 # --------------- Plugins ---------------------- #
 # ---------------------------------------------- #
-plugins=(git vi-mode extract)
+plugins=(git vi-mode extract zsh-autosuggestions)
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

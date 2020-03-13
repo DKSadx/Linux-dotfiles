@@ -27,8 +27,9 @@ let &t_EI = "\<Esc>[2 q"
 " Sets keycode timeout
 set timeoutlen=150 ttimeoutlen=0
 
-" Displays line numbers
-set relativenumber
+" Turns hybrid line numbers on
+:set number relativenumber
+:set nu rnu
 
 " Git checks file every 100ms(default 4000ms)
 set updatetime=100
@@ -113,3 +114,12 @@ vnoremap <A-k> :m '<-2<CR>gv=gv
 set hidden
 nnoremap <C-j> :bnext<CR>
 nnoremap <C-k> :bprev<CR>
+
+set tabstop=2       " The width of a TAB is set to 4.
+                    " Still it is a \t. It is just that
+                    " Vim will interpret it to be having
+                    " a width of 4.
+
+set shiftwidth=2    " Indents will have a width of 4
+
+set softtabstop=2   " Sets the number of columns for a TAB

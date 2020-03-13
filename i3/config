@@ -64,7 +64,8 @@ bindsym $mod+p exec urxvt -name python -e python3
 for_window [class="URxvt" instance="python"] floating enable
 
 # Google Search script for rofi
-bindsym $mod+s exec ~/My_scripts/polysearch.sh
+#bindsym $mod+s exec ~/My_scripts/polysearch.sh
+bindsym $mod+s exec ~/My_scripts/rofiHDMI.sh
 
 # sublime text and VScode shortcuts
 bindsym $mod+o exec urxvt -name sublime -e vim ~/Documents/backup/prog/more/subl.txt
@@ -106,7 +107,7 @@ bindsym $mod+Escape exec xfce4-appfinder
 bindsym $mod+F1 exec firefox
 bindsym shift+F1 exec google-chrome-stable
 # bindsym shift+F1 exec google-chrome-stable --args --incognito
-bindsym $mod+shift+F1 exec env GTK_THEME=Clearlooks firefox --private
+bindsym $mod+shift+F1 exec firefox -private-window
 bindsym $mod+F2 exec thunar
 bindsym $mod+F3 exec code
 bindsym $mod+shift+F3 exec subl
@@ -321,7 +322,8 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 #assign [class="Google-chrome"] $ws1
 #assign [class="URxvt"] $ws2
 #assign [class="Firefox"] $ws10
-exec google-chrome-stable
+#exec google-chrome-stable
+exec firefox
 assign [class="Pavucontrol"] $ws7
 exec pavucontrol
 
