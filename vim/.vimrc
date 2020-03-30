@@ -34,6 +34,21 @@ set timeoutlen=150 ttimeoutlen=0
 " Git checks file every 100ms(default 4000ms)
 set updatetime=100
 
+" Case insensitive searches
+set ignorecase
+
+" Persistent undo, undo works after closing file
+set undofile
+
+" Searches while typing
+set incsearch
+
+" Doesn't create swap files
+set noswapfile
+
+" Converts tabs to spaces
+set expandtab
+
 " --------------- Colors ------------------ "
 " Colorscheme
 syntax enable
@@ -123,3 +138,7 @@ set tabstop=2       " The width of a TAB is set to 4.
 set shiftwidth=2    " Indents will have a width of 4
 
 set softtabstop=2   " Sets the number of columns for a TAB
+
+" Extra notes
+" <c-a> - increases next number
+" <c-x> - decreases next number
