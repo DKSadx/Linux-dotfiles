@@ -1,6 +1,8 @@
-// URxvt.font: xft:inconsolata:size=15
-URxvt.font: xft:inconsolata:size=15,xft:Inconsolata Nerd Font Mono:size=18 
-// URxvt.letterSpace: -1 
+//URxvt*font: xft:inconsolata:size=15
+//URxvt*font:     xft:mono:medium:size=14
+URxvt*font: xft:DejaVu Sans Mono:size=14
+
+URxvt.letterSpace: -1 
 URxvt.scrollBar: false
 Xcursor.theme: Breeze-Adapta
 Xcursor.size: 16

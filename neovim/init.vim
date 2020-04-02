@@ -12,11 +12,7 @@ Plug 'https://github.com/tpope/vim-fugitive.git'
 Plug 'Rigellute/rigel'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'vimwiki/vimwiki'
-"Plug 'https://github.com/flrnd/plastic.vim.git'
-"Plug 'https://github.com/itchyny/lightline.vim'
-"Plug 'Valloric/YouCompleteMe'
-"Plug 'https://github.com/chrisbra/Colorizer.git'
-"Plug 'https://github.com/airblade/vim-gitgutter'
+Plug 'itchyny/lightline.vim'
 call plug#end()
 
 
@@ -31,6 +27,9 @@ set timeoutlen=150 ttimeoutlen=0
 " Turns hybrid line numbers on
 :set number relativenumber
 :set nu rnu
+
+" Line number width
+set numberwidth=2
 
 " Git checks file every 100ms(default 4000ms)
 set updatetime=100
@@ -49,6 +48,28 @@ set noswapfile
 
 " Converts tabs to spaces
 set expandtab
+
+" The width of a TAB is set to 2. Still it is a \t. It is just that. Vim will interpret it to be having a width of 2.
+set tabstop=2       
+
+" Indents will have a width of 2
+set shiftwidth=2    
+
+" Sets the number of columns for a TAB
+set softtabstop=2   
+
+" Gets rid of thing like --INSERT--
+set noshowmode 
+" Gets rid of display of last command
+set noshowcmd  
+" Gets rid of the file name displayed in the command line bar
+set shortmess+=F  
+" Gets rid of thing like --INSERT--
+set noshowmode 
+" Gets rid of display of last command
+set noshowcmd  
+" Gets rid of the file name displayed in the command line bar
+set shortmess+=F  
 
 " --------------- Colors ------------------ "
 " Colorscheme
@@ -93,7 +114,7 @@ nnoremap U :redo<CR>
 " Yank to system clipboard(requires gvim on Arch linux)
 map Y "+y
 
-" Opens nerdtree file explorer
+" Toggles nerdtree file explorer
 map <C-o> :NERDTreeToggle<CR>
 
 " Git diff
@@ -131,20 +152,12 @@ set hidden
 nnoremap <C-j> :bnext<CR>
 nnoremap <C-k> :bprev<CR>
 
-set tabstop=2       " The width of a TAB is set to 4.
-                    " Still it is a \t. It is just that
-                    " Vim will interpret it to be having
-                    " a width of 4.
-
-set shiftwidth=2    " Indents will have a width of 4
-
-set softtabstop=2   " Sets the number of columns for a TAB
 
 " Lightline configuration
-"set laststatus=2
-"let g:lightline = {
-      "\ 'colorscheme': 'deus',
-      "\ }
+set laststatus=2
+let g:lightline = {
+      \ 'colorscheme': 'deus',
+      \ }
 
 " Vim wiki configs
 set nocompatible
@@ -152,6 +165,10 @@ filetype plugin on
 "syntax on
 nmap ww <Plug>VimwikiTabIndex
 
-" Extra notes
+" Hides tmux bar when vim is open
+"autocmd VimEnter,VimLeave * silent !tmux set status off
+
+
+" === Extra notes ===
 " <c-a> - increases next number
 " <c-x> - decreases next number

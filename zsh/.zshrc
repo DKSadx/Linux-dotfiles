@@ -15,8 +15,13 @@ manToPdf() {
 }
 # Clear all package cache but last version
 alias clearCache='paccache -rk1'
-# Start vim in insert mode
-alias vim='vim -c "startinsert"'
+# Neovim
+alias nv='nvim'
+alias vim='nvim'
+# Neovim config
+alias nvc='nvim .config/nvim/init.vim'
+# Git diff in neovim
+alias gdif='nvim -c "Gdiff"'
 # Moves file into trash-bin instead deleting it
 alias rm=trash-put
 # Shows man in pdf
@@ -26,18 +31,12 @@ alias ipi='ipconfig getifaddr en0'
 alias ipe='curl ipinfo.io/ip'
 # Untar tar files
 alias untar='tar -zxvf'
-# Setup VPN
-alias vpn='cat ~/VPN/VPNbook-us2/auth.txt ;sudo openvpn ~/VPN/VPNbook-us2/vpnbook-us2-udp25000.ovpn'
-# Show public ip
-alias pubip='dig +short myip.opendns.com @resolver1.opendns.com'
 # Color cat - print file with syntax highlighting.
 alias ccat="highlight --out-format=ansi"
 # Download youtube mp3 file
 alias yta=ytAudio
-  #alias yta="youtube-dl --extract-audio --audio-format mp3 -o '~/Music/%(title)s.%(ext)s'"
 # Download youtube video file
 alias ytv=ytVideo
-#alias ytv="youtube-dl -o '~/Videos/%(title)s.%(ext)s'"
 alias c='clear'
 alias pac='sudo pacman -S'
 alias pacR='sudo pacman -Rns'
@@ -53,20 +52,16 @@ alias update='pacman -Syu'
 alias tmuxn='tmux new -s'
 # Shellcheck
 alias sc='shellcheck'
-# External ip
-alias eip='curl ifconfig.me'
+
 #--- Kubernetes ---
 # K9s
 alias k='k9s'
-# Kubectl
-alias kc='kubectl'
-# Descibe
-alias kcd='kubectl descibe'
-# Get
-alias kcg='kubectl get'
-# Minikube
-alias mk='minikube'
-alias cdA='cd ~/Desktop/ABH-tasks/demo-app'
+# Cd to dotfiles git directory
+alias cdL='cd ~/Documents/backup/Linux-dotfiles'
+
+# Old
+# Start vim in insert mode
+#alias vim='vim -c "startinsert"'
 
 # ---------------------------------------------- #
 # --------------- Oh-my-zsh stuff -------------- #
@@ -147,9 +142,9 @@ zle -N zle-line-init
 # echo -ne '\e[5 q' # Use beam shape cursor on startup.
 # preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
-# Sets shell default editor to vim
-EDITOR=/usr/bin/vim
-VISUAL=/usr/bin/vim
+# Sets shell default editor to neovim
+EDITOR=/usr/bin/nvim
+VISUAL=/usr/bin/nvim
 
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
