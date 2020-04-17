@@ -25,8 +25,8 @@ let &t_EI = "\<Esc>[2 q"
 set timeoutlen=150 ttimeoutlen=0
 
 " Turns hybrid line numbers on
-:set number relativenumber
-:set nu rnu
+set number relativenumber
+set nu rnu
 
 " Line number width
 set numberwidth=2
@@ -98,6 +98,9 @@ hi LineNr ctermfg=blue ctermbg=0
 " By pressing ctrl+r in visual mode, you will be prompted to enter text to replace with.
 " Press enter and then confirm each change you agree with y or decline with n.
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
+
+" Toggle line numbers (<bar> needs to be used if chaining multiple commands)
+nnoremap <C-l> :set nu! <bar> :set rnu!<CR>
 
 " Maps S to save file
 nnoremap S :update<CR>
