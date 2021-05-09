@@ -10,42 +10,41 @@
 ;
 ;
 ;   To learn more about how to configure Polybar
-;   go to https://github.com/jaagr/polybar
+;   go to https://github.com/polybar/polybar
 ;
-;   The README contains alot of information
+;   The README contains a lot of information
 ;
 ;==========================================================
-;font-0 = fixed:pixelsize=8:weight=bold;0
-;font-1 = unifont:fontformat=truetype:size=8:weight=bold:antialias=false;0
-;font-2 = "Wuncon siji:pixelsize=8;1"
-;font-3 = "Font Awesome 5 Free:style=Regular:pixelsize=8;1"
-;font-4 = "Font Awesome 5 Free:style=Solid:pixelsize=8;1"
-;font-5 = "Font Awesome 5 Brands:pixelsize=8;1"
-
-# fix for overlapping tray in fullscreen mode i3wm
-fixed-center = false
 
 [colors]
 ;background = ${xrdb:color0:#222}
-background = #162433
+background = #222
 background-alt = #444
 ;foreground = ${xrdb:color7:#222}
-;color for all text
-foreground = #99d6ff
-;color for icons
-foreground-alt = #99d6ff
+foreground = #c5aef5
+foreground-alt = #555
 primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
+; Most of battery values are overwritten in battery section
+battery-full = #00ff00
+battery-mid = #ffff00
+battery-low = #ff0000
+battery-charging = #00ff00
+wifi = #00ffff
+memory = #ff5555
+cpu = #cc6600
+brightness = #ffff00
+time = #000000
+
 
 [bar/example]
 ;monitor = ${env:MONITOR:HDMI-1}
-monitor = ${env:MONITOR:}
 width = 100%
-height = 22
+height = 27
 ;offset-x = 1%
 ;offset-y = 1%
-radius = 0.0
+radius = 6.0
 fixed-center = false
 
 background = ${colors.background}
@@ -55,7 +54,7 @@ line-size = 3
 line-color = #f00
 
 border-size = 0
-border-color = #000000
+border-color = #00000000
 
 padding-left = 0
 padding-right = 2
@@ -63,63 +62,45 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
+;font:style:size:Yoffset
+font-0 = fixed:pixelsize=10;1
+font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-2 = siji:pixelsize=10;1
+font-3 = "/usr/share/fonts/robotoFont/Roboto-Thin.ttf:pixelsize=12;3"
+font-4 = "FontAwesome5Free:style=Solid:pixelsize=10;1"
+font-5 = "FontAwesome5Brands:style=Solid:pixelsize=10;1"
 
 
 
-# font-0 = "UbuntuMono-BI.ttf:pixelsize=15;3"
-font-0 = "/usr/share/fonts/robotoFont/Roboto-Thin.ttf:pixelsize=12;3"
-font-1 = "FontAwesome5Free:style=Solid:pixelsize=15;3"
-font-2 = "FontAwesome5Brands:style=Solid:pixelsize=15;3"
-
-
-
-;font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-;font-2 = siji:pixelsize=10;1
-;bspwm
-
-
-
-
-
-modules-left = i3
-modules-center =
-modules-right =  pulseaudio my_wifi battery memory cpu  bright date
-
-
-
-
+modules-left = i3 title
+modules-center = 
+modules-right = pulseaudio my_wifi battery memory cpu  bright date
 
 tray-position = right
 tray-padding = 2
-;tray-transparent = true
-;tray-background = #0063ff
-
-;wm-restack = bspwm
-;wm-restack = i3
-
-;override-redirect = true
-
-;scroll-up = bspwm-desknext
-;scroll-down = bspwm-deskprev
-
-;scroll-up = i3wm-wsnext
-;scroll-down = i3wm-wsprev
 
 cursor-click = pointer
 cursor-scroll = ns-resize
 
-; Custom modules
+enable-ipc = true
+
+[module/title]
+type = internal/xwindow
+label = %title%
+label-maxlen = 75
 
 [module/my_wifi]
 format-prefix = " "
 ; Changes the color of the icon
-;format-prefix-foreground = ${colors.foreground-alt}
+format-prefix-foreground = ${colors.wifi}
+;format-foreground = ${colors.wifi}
 format-padding = 2
 type = custom/script
 tail = true
 label = %output%
 interval = 3
 exec = ~/My_scripts/wifi.sh
+
 
 [module/my_volume]
 ;format-prefix = " "
@@ -134,11 +115,12 @@ exec = /home/sadx/My_scripts/Volume.sh
 [module/bright]
 type = custom/script
 tail = true
+format-prefix = " "
 label = %output%
 interval = 0.2
+format-prefix-foreground = ${colors.brightness}
+;format-foreground = ${colors.brightness}
 exec = ~/My_scripts/polyBrightness.sh
-;exec = "xrandr --verbose | grep -i brightness | cut -f2 -d ' ' | head -n1"
-format-prefix = " "
 
 [module/xwindow]
 type = internal/xwindow
@@ -174,21 +156,20 @@ label-unmounted-foreground = ${colors.foreground-alt}
 type = internal/bspwm
 
 label-focused = %index%
-;colors of workspaces 1,2,3....
-label-focused-background = #882fc2cc
+label-focused-background = ${colors.background-alt}
 label-focused-underline= ${colors.primary}
-label-focused-padding = 4
+label-focused-padding = 2
 
 label-occupied = %index%
-label-occupied-padding = 4
+label-occupied-padding = 2
 
 label-urgent = %index%!
 label-urgent-background = ${colors.alert}
-label-urgent-padding = 4
+label-urgent-padding = 2
 
 label-empty = %index%
 label-empty-foreground = ${colors.foreground-alt}
-label-empty-padding = 5
+label-empty-padding = 2
 
 ; Separator in between workspaces
 ; label-separator = |
@@ -205,22 +186,14 @@ strip-wsnumbers = true
 
 ws-icon-0 = 1;1: 
 ws-icon-1 = 2;2: 
-ws-icon-2 = 3;3: 
+ws-icon-2 = 3;3: 
 ws-icon-3 = 4;4
 ws-icon-4 = 5;5
 ws-icon-5 = 6;6
-ws-icon-6 = 7;7
-ws-icon-7 = 8;8
-ws-icon-8 = 9;9
+ws-icon-6 = 7;7 
+ws-icon-7 = 8;8 
+ws-icon-8 = 9;9 
 ws-icon-9 = 10;10: 
-
-
-# label-focused = %icon%
-# label-unfocused = %icon%
-# label-visible = %icon%
-# label-urgent = %icon%
-
-
 
 label-mode-padding = 2
 label-mode-foreground = #000
@@ -230,26 +203,25 @@ label-mode-background = ${colors.primary}
 label-focused = %icon%
 label-focused-background = ${module/bspwm.label-focused-background}
 ;label-focused-underline = ${module/bspwm.label-focused-underline}
-label-focused-padding = ${module/bspwm.label-focused-padding}
+label-focused-padding = 3
 
 ; unfocused = Inactive workspace on any monitor
 label-unfocused = %icon%
-label-unfocused-padding = ${module/bspwm.label-occupied-padding}
+label-unfocused-padding = 3
 
 ; visible = Active workspace on unfocused monitor
 label-visible = %icon%
 label-visible-background = ${self.label-focused-background}
 ;label-visible-underline = ${self.label-focused-underline}
-label-visible-padding = ${self.label-focused-padding}
+label-visible-padding = 3
 
 ; urgent = Workspace with urgency hint set
 label-urgent = %icon%
 label-urgent-background = ${module/bspwm.label-urgent-background}
-label-urgent-padding = ${module/bspwm.label-urgent-padding}
+label-urgent-padding = 3
 
 ; Separator in between workspaces
 ; label-separator = |
-
 
 [module/mpd]
 type = internal/mpd
@@ -286,12 +258,12 @@ inherit = module/xbacklight
 type = internal/backlight
 card = intel_backlight
 
-
 [module/cpu]
 type = internal/cpu
 interval = 2
 format-prefix = " "
-;format-prefix-foreground = ${colors.foreground-alt}
+format-prefix-foreground = ${colors.cpu}
+;format-foreground = ${colors.cpu}
 format-padding = 1
 ;format-underline = #ffb52a
 label = %percentage:2%%
@@ -300,14 +272,15 @@ label = %percentage:2%%
 type = internal/memory
 interval = 2
 format-prefix = " "
-;format-prefix-foreground = ${colors.foreground-alt}
+format-prefix-foreground = ${colors.memory}
+;format-foreground = ${colors.memory}
 format-padding = 2
 ;format-underline = #4bffdc
 label = %percentage_used%%
 
 [module/wlan]
 type = internal/network
-interface = wlan
+interface = wlan0
 interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
@@ -329,7 +302,7 @@ ramp-signal-foreground = ${colors.foreground-alt}
 
 [module/eth]
 type = internal/network
-interface = 
+interface = eno1
 interval = 3.0
 
 format-connected-underline = #55aa55
@@ -356,7 +329,6 @@ time-alt = %H:%M:%S
 format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
 ;format-underline = #0a6cf5
-
 label = %date% %time%
 
 [module/pulseaudio]
@@ -369,23 +341,14 @@ label-volume-foreground = ${root.foreground}
 label-muted =  
 label-muted-foreground = #ff5555
 
-
 bar-volume-width = 10
-bar-volume-foreground-0 = #99d6ff
-bar-volume-foreground-1 = #99d6ff
-bar-volume-foreground-2 = #99d6ff
-bar-volume-foreground-3 = #99d6ff
-bar-volume-foreground-4 = #99d6ff
-bar-volume-foreground-5 = #99d6ff
-bar-volume-foreground-6 = #99d6ff
-;bar-volume-width = 10
-;bar-volume-foreground-0 = #55aa55
-;bar-volume-foreground-1 = #55aa55
-;bar-volume-foreground-2 = #55aa55
-;bar-volume-foreground-3 = #55aa55
-;bar-volume-foreground-4 = #55aa55
-;bar-volume-foreground-5 = #f5a70a
-;bar-volume-foreground-6 = #ff5555
+bar-volume-foreground-0 = #55aa55
+bar-volume-foreground-1 = #55aa55
+bar-volume-foreground-2 = #55aa55
+bar-volume-foreground-3 = #55aa55
+bar-volume-foreground-4 = #55aa55
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #ff5555
 bar-volume-gradient = false
 bar-volume-indicator = |
 bar-volume-indicator-font = 2
@@ -393,7 +356,7 @@ bar-volume-fill = ─
 bar-volume-fill-font = 2
 bar-volume-empty = ─
 bar-volume-empty-font = 2
-bar-volume-empty-foreground = #165884
+bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/alsa]
 type = internal/alsa
@@ -406,15 +369,14 @@ format-muted-prefix = " "
 format-muted-foreground = ${colors.foreground-alt}
 label-muted = sound muted
 
-
- bar-volume-width = 10
+bar-volume-width = 10
 bar-volume-foreground-0 = #55aa55
 bar-volume-foreground-1 = #55aa55
 bar-volume-foreground-2 = #55aa55
 bar-volume-foreground-3 = #55aa55
 bar-volume-foreground-4 = #55aa55
 bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555 
+bar-volume-foreground-6 = #ff5555
 bar-volume-gradient = false
 bar-volume-indicator = |
 bar-volume-indicator-font = 2
@@ -428,33 +390,35 @@ bar-volume-empty-foreground = ${colors.foreground-alt}
 type = internal/battery
 battery = BAT1
 adapter = ACAD
-full-at = 98
+full-at = 99
 format-padding = 1
-format-charging = <ramp-capacity> <label-charging>
+format-charging = <animation-charging> <label-charging>
 format-charging-underline = 
 
 format-discharging = <ramp-capacity> <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
 
 format-full-prefix = " "
-format-full-prefix-foreground = ${colors.foreground-alt}
+format-full-prefix-foreground = ${colors.battery-full}
 format-full-underline = ${self.format-charging-underline}
-
-
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 
 ramp-capacity-2 = 
 ramp-capacity-3 = 
 ramp-capacity-4 = 
-ramp-capacity-foreground = ${colors.foreground-alt}
+ramp-capacity-0-foreground = #ff0000
+ramp-capacity-1-foreground = #ffff00 
+ramp-capacity-2-foreground = #ffff00 
+ramp-capacity-3-foreground = #00ff00 
+ramp-capacity-4-foreground = #00ff00 
 
 animation-charging-0 = 
 animation-charging-1 = 
 animation-charging-2 = 
 animation-charging-3 = 
 animation-charging-4 = 
-animation-charging-foreground = ${colors.foreground-alt}
+animation-charging-foreground = ${colors.battery-full}
 animation-charging-framerate = 750
 
 animation-discharging-0 = 
@@ -462,30 +426,28 @@ animation-discharging-1 = 
 animation-discharging-2 = 
 animation-discharging-3 = 
 animation-discharging-4 = 
-animation-discharging-foreground = ${colors.foreground-alt}
+animation-discharging-foreground = ${colors.battery-low}
 animation-discharging-framerate = 750
 
+
 [module/temperature]
-;format-prefix = ""
 type = internal/temperature
 thermal-zone = 0
-warn-temperature = 80
+warn-temperature = 60
 
 format = <ramp> <label>
-;format-underline = #f50a4d
-;format-warn = <ramp> <label-warn>
-;format-warn-underline = ${self.format-underline}
+format-underline = #f50a4d
+format-warn = <ramp> <label-warn>
+format-warn-underline = ${self.format-underline}
 
 label = %temperature-c%
 label-warn = %temperature-c%
 label-warn-foreground = ${colors.secondary}
 
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-3 = 
-ramp-4 = 
-;ramp-foreground = ${colors.foreground-alt}
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = ${colors.foreground-alt}
 
 [module/powermenu]
 type = custom/menu
@@ -522,16 +484,8 @@ screenchange-reload = true
 ;compositing-background = screen
 ;compositing-foreground = source
 ;compositing-border = over
+;pseudo-transparency = false
 
 [global/wm]
-margin-top = 5
-margin-bottom = 5
-
-; vim:ft=dosini
-
-
-
-
-
-
-
+margin-top = 0
+margin-bottom = 0

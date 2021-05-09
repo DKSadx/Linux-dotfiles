@@ -1,15 +1,12 @@
 backend = "glx";
 glx-no-stencil = true;
-vsync = "opengl-swc";
+vsync = true;
 # Shadow
 shadow = false;
-no-dnd-shadow = true;
-no-dock-shadow = true;
-clear-shadow = true;
 shadow-radius = 7;
 shadow-offset-x = -7;
 shadow-offset-y = -7;
-shadow-opacity = 0.8;
+shadow-opacity = 1;
 #shadow-red = 0.0;
 #shadow-green = 0.0;
 #shadow-blue = 0.0;
@@ -25,12 +22,10 @@ shadow-exclude = [
 # xinerama-shadow-crop = true;
 
 # Opacity
-menu-opacity = 1;
 inactive-opacity = 1;
 active-opacity = 1;
 frame-opacity = 1;
 inactive-opacity-override = false;
-alpha-step = 0.06;
 # inactive-dim = 0.2;
 # inactive-dim-fixed = true;
 # blur-background = true;
@@ -46,8 +41,8 @@ blur-background-exclude = [
 # opacity-rule = [ "80:class_g = 'URxvt'" ];
 
 opacity-rule = [
-  "95:class_g = 'URxvt' && focused",
-  "80:class_g = 'URxvt' && !focused"
+  "100:class_g = 'URxvt' && focused",
+  "90:class_g = 'URxvt' && !focused"
 ];
 
 # Fading
@@ -69,7 +64,6 @@ detect-client-opacity = true;
 refresh-rate = 0;
 #vsync = "none";
 dbe = false;
-paint-on-overlay = true;
 # sw-opti = true;
 # unredir-if-possible = true;
 # unredir-if-possible-delay = 5000;
@@ -79,16 +73,6 @@ detect-transient = true;
 detect-client-leader = true;
 invert-color-include = [ ];
 # resize-damage = 1;
-
-# GLX backend
-# glx-no-stencil = true;
-glx-copy-from-front = false;
-# glx-use-copysubbuffermesa = true;
-# glx-no-rebind-pixmap = true;
-glx-swap-method = "undefined";
-# glx-use-gpushader4 = true;
-# xrender-sync = true;
-# xrender-sync-fence = true;
 
 # Window type settings
 wintypes:

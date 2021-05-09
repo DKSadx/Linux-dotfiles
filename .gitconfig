@@ -1,0 +1,14 @@
+[core]
+    hooksPath = /home/sadx/.git-templates/hooks
+    pager = delta
+    editor = nvim
+[delta]
+    plus-color = "#012800"
+    minus-color = "#340001"
+    syntax-theme = Monokai Extended Origin
+    side-by-side = true
+    max-line-length = 0
+[interactive]
+    diffFilter = delta --color-only
+[init]
+    defaultBranch = main

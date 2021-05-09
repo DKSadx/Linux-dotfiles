@@ -1,21 +1,17 @@
 # i3wm(gaps) config
-# Sadx
 # Resets keyboard layout to default setxkbmap -layout 'us(intl)'
 
 #---- shutdown
 bindsym $mod+shift+s exec shutdown now
 
-#---- log off
-bindsym $mod+Insert exec pkill -u sadx
-
 #---- i3lock background
-bindsym $mod+F11 exec i3lock -i ~/Pictures/wpLock.png
+bindsym $mod+F11 exec i3lock -i ~/Pictures/lockscreen.png
 
 #---- turn off screen untill keypress or mouse movement(F11)
-bindsym XF86AudioNext exec xset dpms force off
+bindsym $mod+XF86AudioNext exec xset dpms force off
 
 #---- Desktop wallpaper
-#exec feh --bg-scale /home/sadx/Pictures/other/deer.jpg
+exec_always feh --bg-scale ~/Pictures/wallpaper.jpg
 
 
 #---- STARTUPS ----#
@@ -32,18 +28,23 @@ exec udiskie -s -f thunar
 #---- clipboard daemon(greenclip) ; clear history "greenclip clear"
 exec --no-startup-id greenclip daemon
 
+#---- start browser
+exec brave
+
 #---- runs picom
-#exec_always killall -e picom; exec picom
+#exec_always killall -e picom
+exec_always picom --experimental-backends --config ~/.config/picom/config
 
 #---- runs dunst
-exec_always killall -e dunst; exec duns
+exec dunst
 
 # adds network manager to the tray
-exec_always killall -e nm-applet; exec nm-applet
-exec_always nm-applet
+exec nm-applet
+# adds bluetooth manager to the tray
+exec blueman-applet
 
 # pywal theme
-exec_always rm -r ~/.cache/wal ; wal -i ~/Pictures/wp1.jpg
+#exec_always rm -r ~/.cache/wal ; wal -i ~/Pictures/wp1.jpg
 
 # change brightness
 bindsym XF86MonBrightnessDown exec ~/My_scripts/brightness.sh Down
@@ -67,50 +68,37 @@ for_window [class="URxvt" instance="python"] floating enable
 #bindsym $mod+s exec ~/My_scripts/polysearch.sh
 bindsym $mod+s exec ~/My_scripts/rofiHDMI.sh
 
-# sublime text and VScode shortcuts
-bindsym $mod+o exec urxvt -name sublime -e vim ~/Documents/backup/prog/more/subl.txt
-for_window [class="URxvt" instance="sublime"] floating enable
-
-# vim shortcuts
-bindsym $mod+shift+o exec urxvt -name vim -e vim ~/Documents/backup/prog/more/vim.txt
-for_window [class="URxvt" instance="vim"] floating enable
-
 # opens urxvt in a floating window
 bindsym $mod+shift+t exec urxvt -name tty
 for_window [class="URxvt" instance="tty"] floating enable
 
-
 # Pulse Audio controls (multimedia buttons)
-bindsym XF86AudioRaiseVolume exec ~/My_scripts/v+.sh # increase sound volume script
-bindsym XF86AudioLowerVolume exec ~/My_scripts/v-.sh # decrease sound volume script
-bindsym XF86AudioMute exec ~/My_scripts/soundMute.sh # mute sound script
+#bindsym XF86AudioRaiseVolume exec ~/My_scripts/v+.sh # increase sound volume script
+#bindsym XF86AudioLowerVolume exec ~/My_scripts/v-.sh # decrease sound volume script
+#bindsym XF86AudioMute exec ~/My_scripts/soundMute.sh # mute sound script
 #bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
 # Enable/disable touchpad(F10)
-bindsym XF86AudioPlay exec ~/My_scripts/touchpad_toggle.sh
+bindsym $mod+XF86AudioPlay exec ~/My_scripts/touchpad_toggle.sh
 #--------------------------------------------------------------------------------------
 # "minimizes program"
 bindsym $mod+shift+grave move scratchpad
 bindsym $mod+grave scratchpad show
 
 # opens i3 config
-bindsym $mod+shift+c exec urxvt -e vim /home/sadx/.config/i3/config
+bindsym $mod+shift+c exec urxvt -e vim ~/.config/i3/config
 # hdmi script
-bindsym $mod+shift+h exec /home/sadx/My_scripts/hdmi.sh
+bindsym $mod+shift+h exec ~/My_scripts/hdmi.sh
 # screenshot tool
 bindsym Print exec flameshot gui
 bindsym $mod+Shift+Escape exec flameshot full -c
 bindsym shift+Print exec flameshot gui -p ~/Pictures/screenshots
 # app gui manager
 bindsym $mod+Escape exec xfce4-appfinder
-# bindsym $mod+F1 exec google-chrome-stable
-bindsym $mod+F1 exec firefox
-bindsym shift+F1 exec google-chrome-stable
-# bindsym shift+F1 exec google-chrome-stable --args --incognito
-bindsym $mod+shift+F1 exec firefox -private-window
+
+bindsym $mod+F1 exec brave
 bindsym $mod+F2 exec thunar
 bindsym $mod+F3 exec code
-bindsym $mod+shift+F3 exec subl
 bindsym $mod+F4 exec urxvt -e ranger
 bindsym $mod+F5 exec runelite --mode=OFF
 bindsym $mod+shift+F5 exec sg no-internet -c minecraft-launcher
@@ -118,15 +106,12 @@ bindsym $mod+F6 exec thunderbird
 	for_window [window_role="Msgcompose" class="(?i)Thunderbird"] floating enable
 # restart dunst
 bindsym $mod+F7 exec killall -e dunst; exec dunst
-
 # changes keyboard language(ba <-> us)
 bindsym $mod+F9 exec ~/My_scripts/keyboardLang.sh
+bindsym $mod+F10 exec spotify
 
 # clears greenclip history(clipboard)
 bindsym $mod+Delete exec ~/My_scripts/greenclip.sh
-
-# opens spotify in firefox
-bindsym $mod+F10 exec firefox https://open.spotify.com/collection/playlists
 
 # neofetch --w3m ~/Pictures/img.jpg (custom neofetch image)
 
@@ -152,12 +137,12 @@ for_window [title="sshFloat" class="URxvt"] floating enable
 
 
 # add user to group gpasswd -a
-gaps inner 10
-gaps outer 10
+gaps inner 6
+gaps outer 2
 smart_gaps on
-for_window [class="^.*"] border pixel 0
+for_window [class="^.*"] border pixel 1
 
-set $bg-color 	         #2f343f
+set $bg-color 	         #7B59C0
 set $inactive-bg-color   #2f343f
 set $text-color          #f3f4f5
 set $inactive-text-color #676E7D
@@ -165,9 +150,9 @@ set $urgent-bg-color     #E53935
 
 # window colors
 #                       border              background         text                 indicator
-client.focused          $bg-color           $bg-color          $text-color          #00ff00
-client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
-client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
+client.focused          $bg-color           $bg-color          $bg-color            #00ff00
+client.unfocused        $inactive-bg-color $inactive-bg-color  $inactive-bg-color            #00ff00
+client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color  #00ff00
 client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
 
 hide_edge_borders both
@@ -207,7 +192,7 @@ floating_modifier $mod
 #bindsym $mod+Enter exec i3-sensible-terminal
 bindsym $mod+Return exec urxvt
 # kill focused window
-bindsym $mod+q kill
+bindsym $mod+shift+q kill
 
 # rofi clipboard(greenclip)
 bindsym $mod+c exec rofi -theme Nebula -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
@@ -319,16 +304,10 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 
 #xprop finds class
 
-#assign [class="Google-chrome"] $ws1
-#assign [class="URxvt"] $ws2
-#assign [class="Firefox"] $ws10
-#exec google-chrome-stable
-exec firefox
-assign [class="Pavucontrol"] $ws7
+for_window [class="Pavucontrol"] move to workspace $ws7
 exec pavucontrol
-
-#exec urxvt
-#exec urxvt
+for_window [class="Spotify"] move to workspace $ws10
+exec spotify
 
 # reload the configuration file
 # bindsym $mod+Shift+c reload
@@ -384,10 +363,58 @@ bindsym $mod+r mode "resize"
 #mod1 == alt
 #pulseaudio -k
 #converts img for i3lock #convert -scale 2560x1440 source-image.jpg lockscreen.png
-#--- Programs
-#neofetch,cava(audio visualizer),cmatrix,pywal(colors),xprop(for classes),xev(checks key)
-#ksysguard,nm-applet(network manager applet),file-roller(gui tar)
-#dunst(notification deamon),keepassx(pw manager),redshift(nightlight),udiskie,
-#firejail(sandbox),Gufw/ufw(firewall setup), trash-cli(trash commands cli), gvfs(trash can),
-#pkgbrowser(clear cache gui),lsof(open ports, "sudo lsof -i"), glances(better htop), python-qrcode(qr code generator)
-#Gource(visualizing git repo)
+
+# ================================================================= #
+# =====================                      ====================== #
+# ==================         Programs          ==================== #
+# =====================                      ====================== #
+# ================================================================= #
+
+# neofetch,cava(audio visualizer),cmatrix,pywal(colors),xprop(for classes),xev(checks key),
+# ksysguard(GUI htop),nm-applet(network manager applet),file-roller(gui tar)<
+# dunst(notification deamon),keepassx(pw manager),redshift(nightlight),udiskie(auto mounts usb),
+# firejail(sandbox),Gufw/ufw(firewall setup), trash-cli(trash commands cli), gvfs(trash can),
+# pkgbrowser(clear cache gui),lsof(open ports, "sudo lsof -i"), glances(better htop), python-qrcode(qr code generator),
+# Gource(visualizing git repo), imagemagick, brave, polybar, rofi, xclip (clipboard), arandr (gui hdmi stuff), bat (cat++),
+# docker, node, code, lazygit, delta (git diff but fancy), pavucontrol, picom (new compton)
+# GTK theme: Nordic-darker ; icons: Breeze Chameleon Dark
+# Bluetooth stuff: blueman, bluez, bluez-libs, bluez-tools, bluez-utils
+
+
+# Review the lines below and append to ~/.config/i3/config
+
+## Volume control
+
+# Path to volume control, without trailing slash
+set $volumepath ~/i3-volume
+
+# Command for the status line
+#   ie: i3blocks, i3status
+set $statuscmd i3status
+
+# Signal used to update the status line
+#   i3blocks uses SIGRTMIN+10 by default
+#   i3status uses SIGUSR1 by default
+set $statussig SIGUSR1
+
+# Amount to increase/decrease volume as a percentage
+set $volumestep 5
+
+# pulseaudio-utils settings
+#
+# Symbolic name for sink (numeric index not supported)
+#   Recommended: comment out this setting and omit the -s option to use default sink
+#   List sink names: pacmd list-sinks | awk -F "[<>]" '/^\s+name: <.*>/{print $2}'
+#set $sinkname alsa_output.pci-0000_00_1b.0.analog-stereo
+
+# Using pulseaudio-utils (append "-s $sinkname" without quotes to override default sink)
+bindsym XF86AudioRaiseVolume exec --no-startup-id $volumepath/volume -n -t $statuscmd -u $statussig up $volumestep
+bindsym XF86AudioLowerVolume exec --no-startup-id $volumepath/volume -n -t $statuscmd -u $statussig down $volumestep
+bindsym XF86AudioMute        exec --no-startup-id $volumepath/volume -n -t $statuscmd -u $statussig mute
+
+# Spotify related key bindings
+bindsym XF86AudioPlay exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
+bindsym XF86AudioStop exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop"
+bindsym XF86AudioPrev exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
+bindsym XF86AudioNext exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
+

@@ -1,29 +1,28 @@
+# Read man pages with bat
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+# Mouse scroll won't work in bat without this
+export BAT_PAGER="less -RF"
+export FZF_DEFAULT_COMMAND='rg --files --hidden -g "!.git" '
+# Sets shell default editor to neovim
+export EDITOR=/usr/bin/nvim
+export VISUAL=/usr/bin/nvim
+
 # ---------------------------------------------- #
 # --------------- Aliases ---------------------- #
 # ---------------------------------------------- #
-ytAudio() {
-	audio="$1"
-	youtube-dl --extract-audio --audio-format mp3 -o '~/Music/%(title)s.%(ext)s' $audio
-}
-ytVideo() {
-	video="$1"
-	youtube-dl -o '~/Videos/%(title)s.%(ext)s' $video
-}
-manToPdf() {
-	man="$1"
-	man -Tpdf $man | zathura -
-}
 # Clear all package cache but last version
 alias clearCache='paccache -rk1'
 # Neovim
 alias nv='nvim'
 alias vim='nvim'
 # Neovim config
-alias nvc='nvim .config/nvim/init.vim'
-# Git diff in neovim
-alias gdif='nvim -c "Gdiff"'
+alias vrc='nvim .config/nvim/init.vim'
+alias zrc='vim ~/.zshrc'
+alias szrc='source ~/.zshrc'
+alias ll='ls -lGFh'
+alias ls='ls -GF'
 # Moves file into trash-bin instead deleting it
-alias rm=trash-put
+alias rm='trash-put'
 # Shows man in pdf
 alias manp=manToPdf
 alias ipi='ipconfig getifaddr en0'
@@ -41,7 +40,7 @@ alias c='clear'
 alias pac='sudo pacman -S'
 alias pacR='sudo pacman -Rns'
 # Launching python in tty
-alias py='python'
+alias py='python3'
 # List all open ports
 alias ports='lsof -i'
 # Shortcut for debug compiling for C
@@ -52,16 +51,42 @@ alias update='pacman -Syu'
 alias tmuxn='tmux new -s'
 # Shellcheck
 alias sc='shellcheck'
-
-#--- Kubernetes ---
-# K9s
-alias k='k9s'
+alias copy="tr -d '\n' | xclip -sel clip"
+alias pc="pwd | copy"
 # Cd to dotfiles git directory
 alias cdL='cd ~/Documents/backup/Linux-dotfiles'
 
-# Old
-# Start vim in insert mode
-#alias vim='vim -c "startinsert"'
+#--- GIT ---
+# Git diff in neovim
+alias gdif='nvim -c "Gdiff"'
+alias gitA='git add'
+alias gitC='git commit -m'
+alias gitP='git push origin'
+
+#--- Kubernetes ---
+alias k='kubectl'
+alias kc='kubectl'
+alias kgp='kubectl get pods'
+alias kgn='kubectl get nods'
+alias kgd='kubectl get deployment'
+alias kdp='kubectl describe pod'
+alias kdd='kubectl describe deployment'
+alias kgs='kubectl get svc'
+alias kds='kubectl describe svc'
+
+
+ytAudio() {
+	audio="$1"
+	youtube-dl --extract-audio --audio-format mp3 -o '~/Music/%(title)s.%(ext)s' $audio
+}
+ytVideo() {
+	video="$1"
+	youtube-dl -o '~/Videos/%(title)s.%(ext)s' $video
+}
+manToPdf() {
+	man="$1"
+	man -Tpdf $man | zathura -
+}
 
 # ---------------------------------------------- #
 # --------------- Oh-my-zsh stuff -------------- #
@@ -75,6 +100,7 @@ export ZSH="/home/sadx/.oh-my-zsh"
 
 # Theme
 ZSH_THEME="theunraveler"
+#ZSH_THEME="robbyrussell"
 
 # Disables auto updates
 DISABLE_AUTO_UPDATE="true"
@@ -112,6 +138,9 @@ SAVEHIST=10000
 
 # vi mode
 bindkey -v
+bindkey '^R' history-incremental-search-backward
+# Fixes bug where you can't delete in insert mode
+bindkey "^?" backward-delete-char
 export KEYTIMEOUT=1
 
 # Use vim keys in tab complete menu:
@@ -122,21 +151,22 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 #bindkey -v '^?' backward-delete-char
 
 # Change cursor shape for different vi modes.
+# For cursor shapes and blinking effects refer to this https://vim.fandom.com/wiki/Change_cursor_shape_in_different_modes
 function zle-keymap-select {
-  if [[ ${KEYMAP} == vicmd ]] ||
-     [[ $1 = 'block' ]]; then
-    echo -ne '\e[1 q'
-  elif [[ ${KEYMAP} == main ]] ||
-       [[ ${KEYMAP} == viins ]] ||
-       [[ ${KEYMAP} = '' ]] ||
-       [[ $1 = 'beam' ]]; then
-    echo -ne '\e[5 q'
-  fi
+	if [[ ${KEYMAP} == vicmd ]] ||
+		 [[ $1 = 'block' ]]; then
+		echo -ne '\e[2 q'
+	elif [[ ${KEYMAP} == main ]] ||
+			 [[ ${KEYMAP} == viins ]] ||
+			 [[ ${KEYMAP} = '' ]] ||
+			 [[ $1 = 'beam' ]]; then
+		echo -ne '\e[6 q'
+	fi
 }
 zle -N zle-keymap-select
 zle-line-init() {
-    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
-    echo -ne "\e[5 q"
+		zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
+		echo -ne "\e[6 q"
 }
 zle -N zle-line-init
 # echo -ne '\e[5 q' # Use beam shape cursor on startup.
@@ -150,14 +180,20 @@ VISUAL=/usr/bin/nvim
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
-# Paths
-export PATH="/home/sadx/.gem/ruby/2.6.0/bin:$PATH"
-
 # Open ranger with ctrl+o
 bindkey -s '^o' 'ranger\n'
 bindkey '^R' history-incremental-search-backward
 # ---------------------------------------------- #
 # --------------- Plugins ---------------------- #
 # ---------------------------------------------- #
-plugins=(git vi-mode extract zsh-autosuggestions)
+plugins=(git vi-mode extract zshautosuggestions)
+# Enables git plugin and places the branch name to the right side
+autoload -Uz compinit && compinit
+autoload -Uz vcs_info
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+setopt prompt_subst
+RPROMPT=\$vcs_info_msg_0_
+zstyle ':vcs_info:git:*' formats '%b'
+
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
