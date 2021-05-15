@@ -379,6 +379,8 @@ bindsym $mod+r mode "resize"
 # docker, node, code, lazygit, delta (git diff but fancy), pavucontrol, picom (new compton)
 # GTK theme: Nordic-darker ; icons: Breeze Chameleon Dark
 # Bluetooth stuff: blueman, bluez, bluez-libs, bluez-tools, bluez-utils
+# Touchpad gestures: libinput-gestures, gestures
+#  Follow all the steps to set up gestures correctly: https://github.com/bulletmark/libinput-gestures
 
 
 # Review the lines below and append to ~/.config/i3/config

@@ -472,7 +472,7 @@ let g:lightline = {
       \ }
 
 " Vim wiki configs
-let g:vimwiki_list = [{'path': '~/Documents/wiki',
+let g:vimwiki_list = [{'path': '~/Documents/Wiki',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 set nocompatible
 filetype plugin on

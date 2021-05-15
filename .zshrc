@@ -16,7 +16,7 @@ alias clearCache='paccache -rk1'
 alias nv='nvim'
 alias vim='nvim'
 # Neovim config
-alias vrc='nvim .config/nvim/init.vim'
+alias vrc='nvim ~/.config/nvim/init.vim'
 alias zrc='vim ~/.zshrc'
 alias szrc='source ~/.zshrc'
 alias ll='ls -lGFh'
@@ -48,7 +48,9 @@ alias gccc='gcc -g -Wall -o'
 # Update and upgrade
 alias update='pacman -Syu'
 # Start named tmux session
-alias tmuxn='tmux new -s'
+alias tn='tmux new -s'
+# Attach to tmux session
+alias ta='tmux attach -t'
 # Shellcheck
 alias sc='shellcheck'
 alias copy="tr -d '\n' | xclip -sel clip"
@@ -186,7 +188,7 @@ bindkey '^R' history-incremental-search-backward
 # ---------------------------------------------- #
 # --------------- Plugins ---------------------- #
 # ---------------------------------------------- #
-plugins=(git vi-mode extract zshautosuggestions)
+plugins=(git vi-mode extract)
 # Enables git plugin and places the branch name to the right side
 autoload -Uz compinit && compinit
 autoload -Uz vcs_info

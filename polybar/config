@@ -73,7 +73,7 @@ font-5 = "FontAwesome5Brands:style=Solid:pixelsize=10;1"
 
 
 modules-left = i3 title
-modules-center = 
+modules-center = spotify
 modules-right = pulseaudio my_wifi battery memory cpu  bright date
 
 tray-position = right
@@ -101,6 +101,15 @@ label = %output%
 interval = 3
 exec = ~/My_scripts/wifi.sh
 
+[module/spotify]
+type = custom/script
+interval = 1
+format-prefix = " "
+format = <label>
+exec = python3 ~/My_scripts/spotify_status.py -f '{artist}: {song}' -q
+format-prefix-foreground = #1db954
+format-foreground = #1db954
+;format-underline = #1db954
 
 [module/my_volume]
 ;format-prefix = " "
